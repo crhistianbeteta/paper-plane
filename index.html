@@ -23,17 +23,17 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     html, body {
-      height: 100%;
+      min-height: 100%;
       background: var(--bg);
       color: var(--text);
       font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     .hidden { display: none !important; }
 
     /* ===================== ESTRUCTURA ===================== */
-    #app { display: grid; grid-template-rows: 54px 1fr; height: 100vh; }
+    #app { display: grid; grid-template-rows: 54px 1fr; min-height: 100dvh; }
 
     #topbar {
       display: flex;
@@ -422,7 +422,17 @@
       #stage { grid-template-columns: 260px 1fr 250px; }
     }
     @media (max-width: 880px) {
-      #stage { grid-template-columns: 1fr; grid-template-rows: auto 1fr auto; overflow-y: auto; }
+      html, body {
+        height: auto;
+        overflow-y: auto;
+      }
+
+      #app {
+        height: auto;
+        min-height: 100dvh;
+      }
+
+      #stage { grid-template-columns: 1fr; grid-template-rows: auto auto auto; overflow: visible; align-content: start; }
       .panel { border: none; border-top: 1px solid var(--panel-border); }
       #scene-wrap { min-height: 52vh; order: -1; }
       .telemetry { flex-wrap: wrap; max-width: calc(100% - 28px); }
